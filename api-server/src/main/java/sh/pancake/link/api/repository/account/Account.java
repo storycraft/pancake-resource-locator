@@ -6,6 +6,8 @@
 
 package sh.pancake.link.api.repository.account;
 
+import org.springframework.lang.Nullable;
+
 import lombok.Data;
 
 @Data
@@ -19,7 +21,10 @@ public class Account {
     private String credential;
 
     private long createdAt;
-    private long activatedAt;
+
+    @Nullable
+    private Long activatedAt;
+
     private long updatedAt;
 
     private boolean suspended;

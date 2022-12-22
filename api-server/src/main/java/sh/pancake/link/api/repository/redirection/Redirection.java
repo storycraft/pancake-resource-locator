@@ -5,6 +5,8 @@
  */
 package sh.pancake.link.api.repository.redirection;
 
+import org.springframework.lang.Nullable;
+
 import lombok.Data;
 
 @Data
@@ -19,8 +21,10 @@ public class Redirection {
     private long createdAt;
     private long updatedAt;
 
-    private long expireAt;
-    private int visitLimit;
+    @Nullable
+    private Long expireAt;
+    @Nullable
+    private Integer visitLimit;
 
     private boolean redirectionPage;
 
