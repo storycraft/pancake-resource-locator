@@ -3,12 +3,10 @@
  *
  * Copyright (c) storycraft. Licensed under the GNU General Public License v3.
  */
-package sh.pancake.link.redirection.repository;
+package sh.pancake.link.redirection.repository.redirection;
 
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
-
-import sh.pancake.link.redirection.Redirection;
 
 @Repository
 public interface RedirectionRepository {

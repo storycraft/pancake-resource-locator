@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sh.pancake.link.redirection.repository.RedirectionRepository">
-    <select id="getRedirection" parameterType="String" resultType="sh.pancake.link.redirection.Redirection">
-        SELECT name, url
+    <select id="getRedirection" parameterType="String" resultType="sh.pancake.link.redirection.repository.redirection.Redirection">
+        SELECT id, name, url
         FROM redirection
         WHERE name = #{name}
     </select>
