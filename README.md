@@ -11,7 +11,6 @@ Modular URL Shortener
 ![Big Picture](./resources/big%20picture.svg)
 * See `api-server` directory for API server app
 * See `server` directory for Pancake Resource Locator server app
-* See `database` directory for database abstraction library for Pancake Resource Locator
 * See `redirect-server` directory for redirection server app
 
 ### Database
