@@ -29,8 +29,6 @@ dependencies {
 
     implementation 'org.springframework:spring-webmvc:6.0.3'
     implementation 'org.springframework:spring-jdbc:6.0.3'
-    
-    runtimeOnly 'org.aspectj:aspectjweaver:1.9.9.1'
 
     implementation 'org.mybatis:mybatis:3.5.11'
     implementation 'org.springframework:spring-jdbc:6.0.3'
