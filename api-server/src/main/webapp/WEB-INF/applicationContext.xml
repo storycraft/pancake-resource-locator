@@ -9,8 +9,8 @@
        http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-    <context:component-scan base-package="sh.pancake.link.repository"/>
-    <context:component-scan base-package="sh.pancake.link.service"/>
+    <context:component-scan base-package="sh.pancake.link.api.repository"/>
+    <context:component-scan base-package="sh.pancake.link.api.service"/>
 
     <mvc:annotation-driven/>
 

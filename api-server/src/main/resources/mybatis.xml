@@ -6,7 +6,7 @@
        http://mybatis.org/schema/mybatis-spring https://mybatis.org/schema/mybatis-spring.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <mybatis:scan base-package="sh.pancake.link.repository"/>
+    <mybatis:scan base-package="sh.pancake.link.api.repository"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>

@@ -30,7 +30,7 @@
         </Logger>
 
         <!-- Logger configuration for server  -->
-        <Logger name="sh.pancake" level="DEBUG" additivity="false">
+        <Logger name="sh.pancake.link.api" level="DEBUG" additivity="false">
             <AppenderRef ref="ConsoleAppender" />
             <AppenderRef ref="FileAppender"/>
         </Logger>

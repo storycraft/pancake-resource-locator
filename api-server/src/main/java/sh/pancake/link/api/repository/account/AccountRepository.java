@@ -3,11 +3,11 @@
  *
  * Copyright (c) storycraft. Licensed under the GNU General Public License v3.
  */
-package sh.pancake.link.repository.redirection;
+package sh.pancake.link.api.repository.account;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RedirectionRepository {
+public interface AccountRepository {
     
 }
