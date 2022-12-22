@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+
+    // Include war plugin to build as war
+    id 'war'
+}
+
+// Apply common properties across project
+apply from: "../project.gradle"
+
+// Set Java toolchain version to 17
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+// Set encoding to utf-8
+tasks.withType(JavaCompile).configureEach {
+	it.options.encoding = "UTF-8"
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+    implementation 'org.apache.logging.log4j:log4j-core:2.19.0'
+    implementation 'org.apache.logging.log4j:log4j-api:2.19.0'
+
+    implementation 'org.springframework:spring-webmvc:6.0.3'
+    implementation 'org.springframework:spring-jdbc:6.0.3'
+    
+    runtimeOnly 'org.aspectj:aspectjweaver:1.9.9.1'
+
+    implementation project(':database')
+    
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    // Use JUnit Jupiter for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+    
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

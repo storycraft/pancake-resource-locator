@@ -1,0 +1,3 @@
+
+// Apply common properties across project
+apply from: "../project.gradle"
