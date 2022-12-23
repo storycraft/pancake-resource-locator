@@ -37,7 +37,7 @@ public class RedirectController {
     @GetMapping(value = "/{name}")
     public void onRedirectPath(@PathVariable("name") String name, HttpServletRequest request, HttpServletResponse httpServletResponse)
             throws IOException {
-        RedirectURL redirection = redirectService.getRedirection(name);
+        RedirectURL redirection = redirectService.getRedirectURL(name);
 
         if (redirection == null) {
             log.trace(String.format("Redirection %s is not found", name));

@@ -25,7 +25,7 @@ public class RedirectService {
      * @return {@code RedirectURL} object if exists
      */
     @Nullable
-    public RedirectURL getRedirection(String name) {
+    public RedirectURL getRedirectURL(String name) {
         return repository.getURLWithName(name);
     }
 }
