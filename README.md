@@ -15,8 +15,9 @@ To run api server or redirect server you need to provide these environment varia
 
 ## Structure
 ![Big Picture](./resources/big%20picture.svg)
+* See `server-core` directory for core server api
 * See `api-server` directory for API server app
-* See `server` directory for Pancake Resource Locator server app
+* See `web` directory for Pancake Resource Locator web app
 * See `redirect-server` directory for redirection server app
 
 ### Database

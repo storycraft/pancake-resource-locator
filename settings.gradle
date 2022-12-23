@@ -1,5 +1,6 @@
 rootProject.name = 'pancake-resource-locator'
 
+include('server-core')
 include('api-server')
 include('redirect-server')
-include('server')
+include('web')
