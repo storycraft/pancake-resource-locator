@@ -16,6 +16,7 @@ public interface AccountRepository {
      * Add {@code Account} to table
      *
      * @param account Account data to add. {@link Account#id} field will be filled on success.
+     * @return Affected row count. 1 on success
      */
-    void add(Account account);
+    int add(Account account);
 }

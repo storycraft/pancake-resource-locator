@@ -17,6 +17,7 @@ public interface VisitlogRepository {
      * {@link Visitlog#id} will be filled on success
      * 
      * @param log {@code Visitlog} to add
+     * @return Affected row count. 1 on success
      */
-    void add(Visitlog log);
+    int add(Visitlog log);
 }
