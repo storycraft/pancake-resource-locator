@@ -7,7 +7,9 @@ package sh.pancake.link.repository.account;
 
 import org.springframework.stereotype.Repository;
 
+/**
+ * Provide database operations for account table
+ */
 @Repository
 public interface AccountRepository {
-    
 }

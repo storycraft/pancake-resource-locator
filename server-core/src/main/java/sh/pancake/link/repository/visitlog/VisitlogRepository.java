@@ -7,6 +7,9 @@ package sh.pancake.link.repository.visitlog;
 
 import org.springframework.stereotype.Repository;
 
+/**
+ * Provide database operations for visitlog table
+ */
 @Repository
 public interface VisitlogRepository {
 
