@@ -34,6 +34,11 @@ public class APIResult<T> {
     @JsonInclude(Include.NON_NULL)
     private T data;
 
+    public APIResult(int status) {
+        this.status = status;
+        this.data = null;
+    }
+
     public static APIResult<Void> success() {
         return new APIResult<>(0, null);
     }
