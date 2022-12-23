@@ -5,6 +5,11 @@
  */
 package sh.pancake.link.api;
 
+import org.springframework.lang.Nullable;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -13,16 +18,27 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class APIResult {
+public class APIResult<T> {
 
     /**
-     * Result code of api. 0 value always means success.
+     * Result status of api. 0 value always means success.
      * <p>
      * See corresponding document for other status codes.
      */
-    private int code;
+    private int status;
 
-    public static APIResult success() {
-        return new APIResult(0);
+    /**
+     * Optional response data
+     */
+    @Nullable
+    @JsonInclude(Include.NON_NULL)
+    private T data;
+
+    public static APIResult<Void> success() {
+        return new APIResult<>(0, null);
+    }
+
+    public static <T> APIResult<T> success(T data) {
+        return new APIResult<>(0, data);
     }
 }
