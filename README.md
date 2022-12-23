@@ -20,9 +20,6 @@ To run api server or redirect server you need to provide these environment varia
 * See `web` directory for Pancake Resource Locator web app
 * See `redirect-server` directory for redirection server app
 
-### Database
-![Database](./resources/database.svg)
-
 ## License
 Pancake Resource Locator is licensed under GPLv3
 
