@@ -12,4 +12,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AccountRepository {
+
+    /**
+     * Add {@code Account} to table
+     *
+     * @param account Account data to add. {@link Account#id} field will be filled on success.
+     */
+    void add(Account account);
 }
