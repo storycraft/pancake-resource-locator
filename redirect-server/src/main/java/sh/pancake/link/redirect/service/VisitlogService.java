@@ -21,10 +21,10 @@ public class VisitlogService {
     /**
      * Add visitlog
      * 
-     * @param redirectionId requested redirection id
+     * @param redirectionId  requested redirection id
      * @param visitorAddress ip address of request
      */
     public void addVisitlog(long redirectionId, String visitorAddress) {
-        repository.addVisitlog(new Visitlog(redirectionId, visitorAddress, System.currentTimeMillis()));
+        repository.addVisitlog(new Visitlog(0, redirectionId, visitorAddress, System.currentTimeMillis()));
     }
 }

@@ -5,9 +5,11 @@
  */
 package sh.pancake.link.repository.redirection;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class Redirection {
     private long id;
 

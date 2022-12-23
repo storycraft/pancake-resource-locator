@@ -11,6 +11,8 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Visitlog {
+    private long id;
+
     private long redirectionId;
 
     private String visitorAddress;

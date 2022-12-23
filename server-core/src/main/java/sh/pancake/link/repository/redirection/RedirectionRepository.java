@@ -17,5 +17,5 @@ public interface RedirectionRepository {
      * @return {@code Redirection} object if redirection exists
      */
     @Nullable
-    Redirection getRedirection(String name);
+    Redirection getWithName(String name);
 }

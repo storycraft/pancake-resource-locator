@@ -26,6 +26,6 @@ public class RedirectService {
      */
     @Nullable
     public Redirection getRedirection(String name) {
-        return repository.getRedirection(name);
+        return repository.getWithName(name);
     }
 }
