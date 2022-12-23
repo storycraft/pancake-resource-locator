@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface AccountRepository {
-
     /**
      * Add {@code Account} to table
      *

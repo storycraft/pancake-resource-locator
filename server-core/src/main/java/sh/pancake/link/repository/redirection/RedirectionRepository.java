@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RedirectionRepository {
-
     /**
      * Get redirect url of provided name from table
      *

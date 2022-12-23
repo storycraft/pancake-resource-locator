@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface VisitlogRepository {
-
     /**
      * Add visitlog to database.
      * {@link Visitlog#id} will be filled on success
