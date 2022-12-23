@@ -6,7 +6,7 @@
                 pattern="%highlight{%d{HH:mm:ss.SSS} %level [%c{1}] %msg%n}{FATAL=red, ERROR=bright red, WARN=bright yellow, INFO=white, DEBUG=green bold, TRACE=blue}"
                 disableAnsi="false" />
         </Console>
-        <RollingRandomAccessFile name="FileAppender" fileName="logs/server-latest.log"
+        <RollingRandomAccessFile name="FileAppender" fileName="logs/api-server-latest.log"
             filePattern="logs/server-%d{yyyy-MM-dd}_%i.log.gz">
             <PatternLayout pattern="[%d{H:mm:ss}] [%t/%level]: %msg%n" />
             <Policies>
