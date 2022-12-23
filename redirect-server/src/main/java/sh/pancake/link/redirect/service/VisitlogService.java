@@ -25,6 +25,6 @@ public class VisitlogService {
      * @param visitorAddress ip address of request
      */
     public void addVisitlog(long redirectionId, String visitorAddress) {
-        repository.addVisitlog(new Visitlog(0, redirectionId, visitorAddress, System.currentTimeMillis()));
+        repository.add(new Visitlog(0, redirectionId, visitorAddress, System.currentTimeMillis()));
     }
 }
