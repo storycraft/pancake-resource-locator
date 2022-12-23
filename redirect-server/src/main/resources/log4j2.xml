@@ -13,10 +13,6 @@
         </Root>
 
         <!-- Logger configuration for spring framework -->
-        <Logger name="org.springframework" level="INFO"
-            additivity="false">
-            <AppenderRef ref="ConsoleAppender" />
-        </Logger>
         <Logger name="org.springframework" level="DEBUG" additivity="false">
             <AppenderRef ref="ConsoleAppender" />
         </Logger>
