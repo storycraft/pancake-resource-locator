@@ -10,7 +10,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import lombok.Setter;
-import sh.pancake.link.repository.redirection.Redirection;
+import sh.pancake.link.repository.redirection.RedirectURL;
 import sh.pancake.link.repository.redirection.RedirectionRepository;
 
 @Service
@@ -22,10 +22,10 @@ public class RedirectService {
     /**
      * Get redirection url of provided name
      * @param name name of redirection
-     * @return {@code Redirection} object if exists
+     * @return {@code RedirectURL} object if exists
      */
     @Nullable
-    public Redirection getRedirection(String name) {
-        return repository.getWithName(name);
+    public RedirectURL getRedirection(String name) {
+        return repository.getURLWithName(name);
     }
 }
