@@ -9,9 +9,9 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-        <property name="url" value="#{systemProperties['DB_URL']}" />
-        <property name="username" value="#{systemProperties['DB_USERNAME']}" />
-        <property name="password" value="#{systemProperties['DB_PASSWORD']}" />
+        <property name="url" value="#{systemEnvironment['DB_URL']}" />
+        <property name="username" value="#{systemEnvironment['DB_USERNAME']}" />
+        <property name="password" value="#{systemEnvironment['DB_PASSWORD']}" />
     </bean>
 
     <bean id="core-config" class="sh.pancake.link.PancakeLinkServerCoreConfig">
