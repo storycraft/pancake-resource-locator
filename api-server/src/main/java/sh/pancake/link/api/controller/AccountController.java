@@ -6,7 +6,6 @@
 package sh.pancake.link.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +18,11 @@ import sh.pancake.link.api.account.AccountLoginForm;
 import sh.pancake.link.api.account.AccountRegisterForm;
 import sh.pancake.link.api.service.AccountService;
 
+/**
+ * Account API controller
+ * 
+ * @see AccountStatusCode
+ */
 @Log4j2
 @RestController
 @RequestMapping("account")
@@ -29,15 +33,15 @@ public class AccountController {
     private AccountService service;
 
     @PostMapping("register")
-    public ResponseEntity<APIResult> register(@ModelAttribute AccountRegisterForm form) {
+    public APIResult<Void> register(@ModelAttribute AccountRegisterForm form) {
         log.trace(String.format("Registering account %s", form.getEmail()));
         service.register(form.getEmail(), form.getPassword());
 
-        return ResponseEntity.ok(APIResult.success());
+        return APIResult.success();
     }
 
     @PostMapping("login")
-    public Object login(@ModelAttribute AccountLoginForm form) {
+    public APIResult<Void> login(@ModelAttribute AccountLoginForm form) {
         return null;
     }
 

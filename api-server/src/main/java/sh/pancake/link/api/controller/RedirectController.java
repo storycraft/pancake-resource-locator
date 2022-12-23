@@ -17,6 +17,11 @@ import sh.pancake.link.api.redirect.RedirectStatusCode;
 import sh.pancake.link.api.service.RedirectService;
 import sh.pancake.link.repository.redirection.RedirectURL;
 
+/**
+ * Redirect API controller
+ * 
+ * @see RedirectStatusCode
+ */
 @RestController
 @RequestMapping("redirect")
 public class RedirectController {
