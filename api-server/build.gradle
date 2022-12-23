@@ -31,6 +31,9 @@ dependencies {
     
     implementation 'com.mysql:mysql-connector-j:8.0.31'
 
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.1'
+
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
     
