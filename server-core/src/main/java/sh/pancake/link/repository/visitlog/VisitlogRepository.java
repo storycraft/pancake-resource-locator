@@ -19,5 +19,5 @@ public interface VisitlogRepository {
      * 
      * @param log {@code Visitlog} to add
      */
-    void addVisitlog(Visitlog log);
+    void add(Visitlog log);
 }
