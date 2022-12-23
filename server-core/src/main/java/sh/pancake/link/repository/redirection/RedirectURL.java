@@ -10,10 +10,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Redirection {
+public class RedirectURL {
     private long id;
-
-    private String name;
 
     private String url;
 }

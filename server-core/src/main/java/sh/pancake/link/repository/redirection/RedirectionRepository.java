@@ -15,11 +15,11 @@ import org.springframework.stereotype.Repository;
 public interface RedirectionRepository {
 
     /**
-     * Get redirection of provided name from table
+     * Get redirect url of provided name from table
      *
      * @param name name of redirection
-     * @return {@code Redirection} object if redirection exists
+     * @return {@code RedirectURL} object if redirection exists
      */
     @Nullable
-    Redirection getWithName(String name);
+    RedirectURL getURLWithName(String name);
 }
