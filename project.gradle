@@ -1,3 +1,9 @@
+/*
+ * Created on Sat Dec 23 2022
+ *
+ * Copyright (c) storycraft. Licensed under the GNU General Public License v3.
+ */
+
 // Defines common project properties
 
 group = 'sh.pancake'
