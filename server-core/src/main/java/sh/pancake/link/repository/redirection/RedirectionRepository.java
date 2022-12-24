@@ -21,4 +21,38 @@ public interface RedirectionRepository {
      */
     @Nullable
     RedirectURL getURLWithName(String name);
+
+    /**
+     * Get {@code Redirection} with name
+     * 
+     * @param name name of redirection
+     * @return @{code Redirection} if redirection exists
+     */
+    @Nullable
+    Redirection getWithName(String name);
+
+    /**
+     * Get {@code Redirection}
+     * 
+     * @param id id of redirection
+     * @return @{code Redirection} if redirection exists
+     */
+    @Nullable
+    Redirection get(long id);
+
+    /**
+     * Delete redirection
+     * 
+     * @param id id of redirection
+     * @return Affected row count
+     */
+    int delete(long id);
+
+    /**
+     * Add redirection
+     * 
+     * @param redirection redirection
+     * @return Affected row count
+     */
+    int insert(Redirection redirection);
 }

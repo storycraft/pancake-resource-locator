@@ -7,4 +7,27 @@
         FROM redirection
         WHERE name = #{name};
     </select>
+
+    <select id="getWithName" parameterType="String"
+        resultType="sh.pancake.link.repository.redirection.Redirection">
+        SELECT id, account_id, name, url, created_at, updated_at, expire_at, visit_limit, redirection_page, user_disabled
+        FROM redirection
+        WHERE name = #{name};
+    </select>
+
+    <select id="get" parameterType="_long"
+        resultType="sh.pancake.link.repository.redirection.Redirection">
+        SELECT id, account_id, name, url, created_at, updated_at, expire_at, visit_limit, redirection_page, user_disabled
+        FROM redirection
+        WHERE id = #{id};
+    </select>
+
+    <delete id="delete" parameterType="_long">
+        DELETE FROM redirection WHERE id = #{id};
+    </delete>
+
+    <insert id="insert" parameterType="sh.pancake.link.repository.redirection.Redirection">
+        INSERT INTO redirection (account_id, name, url, created_at, updated_at, expire_at, visit_limit, redirection_page, user_disabled)
+        VALUES (#{accountId}, #{name}, #{url}, #{createdAt}, #{updatedAt}, #{expireAt}, #{visitLimit}, #{redirectionPage}, #{userDisabled});
+    </insert>
 </mapper>
