@@ -8,8 +8,7 @@ CREATE TABLE account (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 
     email VARCHAR(64) NOT NULL UNIQUE,
-    account_type VARCHAR(8) NOT NULL,
-    credential VARCHAR(128) NOT NULL,
+    credential VARCHAR(128),
 
     created_at BIGINT NOT NULL,
     activated_at BIGINT,

@@ -25,13 +25,9 @@ public class Account {
     private String email;
 
     /**
-     * Type of account
+     * Account credential. null if credential does not exists
      */
-    private String accountType;
-
-    /**
-     * Account credential
-     */
+    @Nullable
     private String credential;
 
     /**
