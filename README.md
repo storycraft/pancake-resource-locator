@@ -2,8 +2,7 @@
 Modular URL Shortener
 
 ## Requirement
-* MySQL db server
-* Java 17+
+* MySQL
 * Java web application server
 * Jakarta EE (Previously JavaEE)
 
