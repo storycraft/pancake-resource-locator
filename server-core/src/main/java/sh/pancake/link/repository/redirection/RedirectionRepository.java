@@ -41,6 +41,14 @@ public interface RedirectionRepository {
     Redirection get(long id);
 
     /**
+     * Get every redirections with account id
+     * 
+     * @param accountId account id
+     * @return {@code Redirection} array
+     */
+    Redirection[] getListOf(int accountId);
+
+    /**
      * Delete redirection
      * 
      * @param id id of redirection
