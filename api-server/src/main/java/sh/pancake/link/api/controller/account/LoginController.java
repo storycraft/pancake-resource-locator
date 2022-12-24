@@ -54,4 +54,10 @@ public class LoginController {
 
         return APIResult.success(credential);
     }
+    
+    @PostMapping("activate")
+    public APIResult<Void> activate(@RequestParam("code") String code) {
+        // TODO:: implement stub
+        return APIResult.error(APIStatusCode.FAILED);
+    }
 }
