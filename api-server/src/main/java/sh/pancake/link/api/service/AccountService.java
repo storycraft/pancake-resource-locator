@@ -5,13 +5,26 @@
  */
 package sh.pancake.link.api.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
+import lombok.Setter;
 import sh.pancake.link.api.account.AccountCredential;
+import sh.pancake.link.repository.account.AccountRepository;
+import sh.pancake.link.repository.redirection.Redirection;
+import sh.pancake.link.repository.redirection.RedirectionRepository;
 
 @Service
 public class AccountService {
+
+    @Setter
+    @Autowired
+    private AccountRepository repository;
+
+    @Setter
+    @Autowired
+    private RedirectionRepository redirectionRepository;
 
     /**
      * Register account
@@ -34,5 +47,15 @@ public class AccountService {
     @Nullable
     public AccountCredential login(String email, String password) {
         return null;
+    }
+
+    /**
+     * Get {@code Redirection} list of account
+     *
+     * @param id id of redirection
+     * @return {@code Redirection} if exists
+     */
+    public Redirection[] getRedirections(int accountId) {
+        return redirectionRepository.getListOf(accountId);
     }
 }

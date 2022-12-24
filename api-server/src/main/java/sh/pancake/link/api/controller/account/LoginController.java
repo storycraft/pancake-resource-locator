@@ -6,11 +6,10 @@
 package sh.pancake.link.api.controller.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
@@ -22,7 +21,6 @@ import sh.pancake.link.api.account.AccountLoginForm;
 import sh.pancake.link.api.account.AccountRegisterForm;
 import sh.pancake.link.api.account.AccountStatusCode;
 import sh.pancake.link.api.service.AccountService;
-import sh.pancake.link.repository.account.Account;
 
 /**
  * Account API controller
@@ -32,8 +30,7 @@ import sh.pancake.link.repository.account.Account;
 @Log4j2
 @RestController
 @RequestMapping("account")
-public class AccountController {
-
+public class LoginController {
     @Autowired
     @Setter
     private AccountService service;
@@ -56,17 +53,5 @@ public class AccountController {
         }
 
         return APIResult.success(credential);
-    }
-
-    @GetMapping("me")
-    public APIResult<Account> getInfo() {
-        // TODO:: implement stub
-        return APIResult.error(APIStatusCode.FAILED);
-    }
-
-    @PutMapping("me")
-    public APIResult<Account> updateInfo() {
-        // TODO:: implement stub
-        return APIResult.error(APIStatusCode.FAILED);
     }
 }

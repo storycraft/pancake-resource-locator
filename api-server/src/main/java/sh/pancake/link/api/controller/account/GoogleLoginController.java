@@ -17,7 +17,7 @@ import lombok.Setter;
 
 @Controller
 @RequestMapping("account/google")
-public class GoogleAccountController {
+public class GoogleLoginController {
 
     private static final String LOGIN_URL = "https://accounts.google.com";
 
