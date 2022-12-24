@@ -7,8 +7,8 @@ package sh.pancake.link.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
@@ -30,8 +30,9 @@ public class RedirectController {
     @Autowired
     private RedirectService service;
 
-    @GetMapping("url")
-    public APIResult<String> redirectURL(@RequestParam("name") String name) {
+
+    @GetMapping("{name}/url")
+    public APIResult<String> redirectURL(@PathVariable("name") String name) {
         RedirectURL url = service.getRedirection(name);
 
         if (url == null) {
