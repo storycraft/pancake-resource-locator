@@ -22,7 +22,7 @@
         WHERE id = #{id};
     </select>
 
-    <select id="getListOf" parameterType="_long"
+    <select id="getListOf" parameterType="_int"
         resultType="sh.pancake.link.repository.redirection.Redirection">
         SELECT id, account_id, name, url, created_at, updated_at, expire_at, visit_limit, redirection_page, user_disabled
         FROM redirection
