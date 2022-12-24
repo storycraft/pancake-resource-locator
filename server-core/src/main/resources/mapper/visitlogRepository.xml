@@ -5,4 +5,9 @@
         INSERT INTO visitlog (redirection_id, visitor_address, visited_at)
         VALUES (#{redirectionId}, #{visitorAddress}, #{visitedAt});
     </insert>
+
+    <select id="getVisitCount" parameterType="_long" resultType="_long">
+        SELECT COUNT(*) FROM visitlog
+        WHERE redirection_id = #{redirection_id};
+    </select>
 </mapper>

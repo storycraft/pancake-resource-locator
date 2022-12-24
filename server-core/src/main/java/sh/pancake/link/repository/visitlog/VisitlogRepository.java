@@ -20,4 +20,12 @@ public interface VisitlogRepository {
      * @return Affected row count. 1 on success
      */
     int add(Visitlog log);
+
+    /**
+     * Get visit count of redirection
+     *
+     * @param redirectionId redirection id
+     * @return Visit count of redirection
+     */
+    long getVisitCount(long redirectionId);
 }
