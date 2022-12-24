@@ -13,6 +13,14 @@ To run api server or redirect server you need to provide these environment varia
 * `DB_USERNAME` Database username
 * `DB_PASSWORD` Database user password
 
+### Database
+Pancake Resource Locator is using `flyway` for database migration.
+
+Run this command below to migrate database
+```bash
+./gradlew database:migrate
+```
+
 ## Structure
 ![Big Picture](./resources/big%20picture.svg)
 * See `server-core` directory for core server api
