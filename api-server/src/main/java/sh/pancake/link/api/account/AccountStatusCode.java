@@ -13,4 +13,9 @@ public final class AccountStatusCode {
      * Account already exists (with same email address)
      */
     public final static int ALREADY_EXISTS = 1;
+
+    /**
+     * Login failed with some reasons (nonexistent account, incorrect password)
+     */
+    public final static int LOGIN_FAILED = 2;
 }
