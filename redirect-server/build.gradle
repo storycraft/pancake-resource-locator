@@ -34,7 +34,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     
-    implementation 'com.mysql:mysql-connector-j:8.0.31'
+    runtimeOnly 'com.mysql:mysql-connector-j:8.0.31'
 
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
