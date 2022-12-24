@@ -3,7 +3,7 @@
  *
  * Copyright (c) storycraft. Licensed under the GNU General Public License v3.
  */
-package sh.pancake.link.api.controller;
+package sh.pancake.link.api.controller.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
