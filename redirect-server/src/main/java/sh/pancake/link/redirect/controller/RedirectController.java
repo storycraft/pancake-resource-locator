@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
-import sh.pancake.link.repository.redirection.RedirectURL;
+import sh.pancake.link.repository.redirection.Redirection;
 import sh.pancake.link.redirect.service.RedirectService;
 import sh.pancake.link.redirect.service.VisitlogService;
 
@@ -37,7 +37,7 @@ public class RedirectController {
     @GetMapping(value = "/{name}")
     public void onRedirectPath(@PathVariable("name") String name, HttpServletRequest request, HttpServletResponse httpServletResponse)
             throws IOException {
-        RedirectURL redirection = redirectService.getRedirectURL(name);
+        Redirection redirection = redirectService.getValid(name);
 
         if (redirection == null) {
             log.trace(String.format("Redirection %s is not found", name));
