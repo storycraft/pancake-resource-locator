@@ -35,7 +35,7 @@ public class RedirectController {
         RedirectURL url = service.getRedirection(name);
 
         if (url == null) {
-            return new APIResult<>(RedirectStatusCode.NOT_FOUND);
+            return APIResult.error(RedirectStatusCode.NOT_FOUND);
         }
 
         return APIResult.success(url.getUrl());
