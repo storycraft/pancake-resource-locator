@@ -20,12 +20,12 @@ public class RedirectService {
     private RedirectionRepository repository;
     
     /**
-     * Get redirection url of provided name
+     * Get redirect url of provided name
      * @param name name of redirection
      * @return {@code RedirectURL} object if exists
      */
     @Nullable
-    public RedirectURL getRedirection(String name) {
+    public RedirectURL getRedirectURL(String name) {
         return repository.getURLWithName(name);
     }
 }

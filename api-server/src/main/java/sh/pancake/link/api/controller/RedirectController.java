@@ -39,7 +39,7 @@ public class RedirectController {
 
     @GetMapping("{name}/url")
     public APIResult<String> redirectURL(@PathVariable("name") String name) {
-        RedirectURL url = service.getRedirection(name);
+        RedirectURL url = service.getRedirectURL(name);
 
         if (url == null) {
             return APIResult.error(RedirectStatusCode.NOT_FOUND);
