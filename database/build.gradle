@@ -3,7 +3,26 @@
  *
  * Copyright (c) storycraft. Licensed under the GNU General Public License v3.
  */
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.mysql:mysql-connector-j:8.0.31'
+        classpath 'org.flywaydb:flyway-mysql:9.10.1'
+    }
+}
+
 plugins {
     id "org.flywaydb.flyway" version "9.8.1"
 }
 
+flyway {
+    url = System.getenv('DB_URL')
+    user = System.getenv('DB_USERNAME')
+    password = System.getenv('DB_PASSWORD')
+    locations = ['filesystem:migration']
+}
+
+task migrate(type: org.flywaydb.gradle.task.FlywayMigrateTask) {}
