@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import sh.pancake.link.api.APIResult;
+import sh.pancake.link.api.account.AccountCredential;
 import sh.pancake.link.api.account.AccountLoginForm;
 import sh.pancake.link.api.account.AccountRegisterForm;
+import sh.pancake.link.api.account.AccountStatusCode;
 import sh.pancake.link.api.service.AccountService;
 
 /**
@@ -41,8 +43,14 @@ public class AccountController {
     }
 
     @PostMapping("login")
-    public APIResult<Void> login(@ModelAttribute AccountLoginForm form) {
-        return null;
-    }
+    public APIResult<AccountCredential> login(@ModelAttribute AccountLoginForm form) {
+        log.trace(String.format("Login request with email %s", form.getEmail()));
+        AccountCredential credential = service.login(form.getEmail(), form.getPassword());
 
+        if (credential == null) {
+            return APIResult.error(AccountStatusCode.LOGIN_FAILED);
+        }
+
+        return APIResult.success(credential);
+    }
 }

@@ -5,7 +5,10 @@
  */
 package sh.pancake.link.api.service;
 
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
+
+import sh.pancake.link.api.account.AccountCredential;
 
 @Service
 public class AccountService {
@@ -15,8 +18,21 @@ public class AccountService {
      *
      * @param email Email address of account
      * @param password Password of account
+     * @return true on success, false if account already exists
      */
-    public void register(String email, String password) {
-        
+    public boolean register(String email, String password) {
+        return false;
+    }
+
+    /**
+     * Login with email and password
+     *
+     * @param email
+     * @param password
+     * @return {@link AccountCredential} on success
+     */
+    @Nullable
+    public AccountCredential login(String email, String password) {
+        return null;
     }
 }
