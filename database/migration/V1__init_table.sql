@@ -5,7 +5,7 @@
  */
 
 CREATE TABLE account (
-	id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
 
     email VARCHAR(64) NOT NULL UNIQUE,
     credential VARCHAR(128),
@@ -18,7 +18,7 @@ CREATE TABLE account (
 );
 
 CREATE TABLE redirection (
-	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
 
     account_id INT NOT NULL,
 
@@ -36,7 +36,7 @@ CREATE TABLE redirection (
 );
 
 CREATE TABLE visitlog (
-	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
 
     redirection_id BIGINT NOT NULL,
 
