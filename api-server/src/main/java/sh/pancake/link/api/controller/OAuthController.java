@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import sh.pancake.link.api.APIResult;
+import sh.pancake.link.api.APIStatusCode;
+import sh.pancake.link.api.account.AccountCredential;
+
 @Controller
 @RequestMapping("oauth")
 public class OAuthController {
     @PostMapping("refresh")
-    public void refresh(@RequestParam("refresh_token") String refreshToken) {
-        
+    public APIResult<AccountCredential> refresh(@RequestParam("refresh_token") String refreshToken) {
+        return APIResult.error(APIStatusCode.FAILED);
     }
 }
