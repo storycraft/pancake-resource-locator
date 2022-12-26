@@ -20,6 +20,7 @@ import sh.pancake.link.api.APIResult;
 import sh.pancake.link.api.APIStatusCode;
 import sh.pancake.link.api.auth.APIAuthenticator;
 import sh.pancake.link.api.redirect.RedirectStatusCode;
+import sh.pancake.link.api.redirect.RedirectionInfo;
 import sh.pancake.link.api.service.RedirectService;
 import sh.pancake.link.repository.redirection.RedirectURL;
 import sh.pancake.link.repository.redirection.Redirection;
@@ -42,7 +43,7 @@ public class RedirectController {
     private APIAuthenticator authenticator;
 
     @PostMapping
-    public APIResult<Redirection> newRedirection(
+    public APIResult<RedirectionInfo> newRedirection(
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
     ) {
         Integer accountId = authenticator.authenticate(authorization);
@@ -55,7 +56,7 @@ public class RedirectController {
     }
 
     @GetMapping("{id}")
-    public APIResult<Redirection> redirection(
+    public APIResult<RedirectionInfo> redirection(
         @PathVariable("id") long id,
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
     ) {
@@ -74,7 +75,7 @@ public class RedirectController {
             return APIResult.error(RedirectStatusCode.NOT_FOUND);
         }
 
-        return APIResult.success(redirection);
+        return APIResult.success(RedirectionInfo.from(redirection));
     }
 
     @DeleteMapping("{id}")
@@ -95,7 +96,7 @@ public class RedirectController {
     }
 
     @GetMapping("named/{name}")
-    public APIResult<Redirection> redirectionByName(
+    public APIResult<RedirectionInfo> redirectionByName(
         @PathVariable("name") String name,
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
     ) {
@@ -110,7 +111,7 @@ public class RedirectController {
             return APIResult.error(RedirectStatusCode.NOT_FOUND);
         }
 
-        return APIResult.success(redirection);
+        return APIResult.success(RedirectionInfo.from(redirection));
     }
 
     @GetMapping("named/{name}/url")
