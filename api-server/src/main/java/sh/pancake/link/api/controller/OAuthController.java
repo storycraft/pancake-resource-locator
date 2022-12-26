@@ -15,17 +15,13 @@ import lombok.Setter;
 import sh.pancake.link.api.APIResult;
 import sh.pancake.link.api.APIStatusCode;
 import sh.pancake.link.api.account.AccountCredential;
-import sh.pancake.link.api.auth.AccessTokenManager;
 import sh.pancake.link.api.auth.RefreshTokenManager;
 import sh.pancake.link.api.service.AccountService;
+import sh.pancake.link.api.service.OAuthService;
 
 @Controller
 @RequestMapping("oauth")
 public class OAuthController {
-
-    @Setter
-    @Autowired
-    private AccessTokenManager accessTokenManager;
 
     @Setter
     @Autowired
@@ -35,6 +31,10 @@ public class OAuthController {
     @Autowired
     private AccountService accountService;
 
+    @Setter
+    @Autowired
+    private OAuthService oAuthService;
+
     @PostMapping("refresh")
     public APIResult<AccountCredential> refresh(@RequestParam("refresh_token") String refreshToken) {
         Integer accountId = refreshTokenManager.verify(refreshToken);
@@ -42,10 +42,6 @@ public class OAuthController {
             return APIResult.error(APIStatusCode.FAILED);
         }
 
-        int expiresIn = accessTokenManager.getExpireTime();
-        String accessToken = accessTokenManager.issue(accountId);
-        String newRefreshToken = refreshTokenManager.issue(accountId);
-
-        return APIResult.success(new AccountCredential(accessToken, newRefreshToken, expiresIn));
+        return APIResult.success(oAuthService.issue(accountId));
     }
 }
