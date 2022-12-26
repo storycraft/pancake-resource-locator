@@ -23,9 +23,19 @@ public interface AccountRepository {
 
     /**
      * Get account with id
+     * 
      * @param accountId Account id
-     * @return {@link Account} object if account exists
+     * @return {@link Account} if account exists
      */
     @Nullable
     Account get(int accountId);
+
+    /**
+     * Get account with email
+     *
+     * @param email Email address
+     * @return {@link Account} if account exists
+     */
+    @Nullable
+    Account getWithEmail(String email);
 }

@@ -11,4 +11,10 @@
         FROM account
         WHERE id = #{id};
     </select>
+
+    <select id="get" parameterType="String" resultType="sh.pancake.link.repository.account.Account">
+        SELECT id, email, credential, created_at, activated_at, updated_at, suspended
+        FROM account
+        WHERE email = #{email};
+    </select>
 </mapper>
