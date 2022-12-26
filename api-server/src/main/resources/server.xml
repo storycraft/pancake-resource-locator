@@ -17,6 +17,10 @@
         <constructor-arg value="#{systemEnvironment['JWT_REFRESH_TOKEN_EXPIRE_TIME']}"/>
     </bean>
 
+    <bean id="authenticator" class="sh.pancake.link.api.auth.APIAuthenticator">
+        <constructor-arg ref="access-token-manager"/>
+    </bean>
+
     <bean id="database-config" class="sh.pancake.link.PancakeLinkDatabaseConfig">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
         <property name="url" value="#{systemEnvironment['DB_URL']}" />
