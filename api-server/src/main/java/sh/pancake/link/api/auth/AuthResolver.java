@@ -55,13 +55,13 @@ public class AuthResolver implements HandlerInterceptor, HandlerMethodArgumentRe
 
             Integer accountId = authenticator.authenticate(authHeader);
             if (accountId == null) {
-                response.sendError(HttpStatus.FORBIDDEN.value());
+                response.sendError(HttpStatus.UNAUTHORIZED.value());
                 return false;
             }
 
             Account account = service.getValid(accountId);
             if (account == null) {
-                response.sendError(HttpStatus.FORBIDDEN.value());
+                response.sendError(HttpStatus.UNAUTHORIZED.value());
                 return false;
             }
 
