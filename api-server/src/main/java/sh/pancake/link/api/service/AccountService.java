@@ -29,6 +29,10 @@ public class AccountService {
     @Autowired
     private RedirectionRepository redirectionRepository;
 
+    @Setter
+    @Autowired
+    private OAuthService oAuthService;
+
     /**
      * Register account
      *
@@ -72,7 +76,13 @@ public class AccountService {
      */
     @Nullable
     public AccountCredential login(String email, String password) {
-        return null;
+        Account account = repository.getWithEmail(email);
+
+        if (account == null || account.isSuspended()) {
+            return null;
+        }
+
+        return oAuthService.issue(account.getId());
     }
 
     /**
