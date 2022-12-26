@@ -5,20 +5,42 @@
  */
 package sh.pancake.link.api.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import lombok.Setter;
 import sh.pancake.link.api.APIResult;
 import sh.pancake.link.api.APIStatusCode;
 import sh.pancake.link.api.account.AccountCredential;
+import sh.pancake.link.api.auth.AccessTokenManager;
+import sh.pancake.link.api.auth.RefreshTokenManager;
 
 @Controller
 @RequestMapping("oauth")
 public class OAuthController {
+
+    @Setter
+    @Autowired
+    private AccessTokenManager accessTokenManager;
+
+    @Setter
+    @Autowired
+    private RefreshTokenManager refreshTokenManager;
+
     @PostMapping("refresh")
     public APIResult<AccountCredential> refresh(@RequestParam("refresh_token") String refreshToken) {
-        return APIResult.error(APIStatusCode.FAILED);
+        Integer accountId = refreshTokenManager.verify(refreshToken);
+        if (accountId == null) {
+            return APIResult.error(APIStatusCode.FAILED);
+        }
+
+        int expiresIn = accessTokenManager.getExpireTime();
+        String accessToken = accessTokenManager.issue(accountId);
+        String newRefreshToken = refreshTokenManager.issue(accountId);
+
+        return APIResult.success(new AccountCredential(accessToken, newRefreshToken, expiresIn));
     }
 }
