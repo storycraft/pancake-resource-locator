@@ -7,9 +7,14 @@
 
     <context:annotation-config />
 
-    <bean id="auth" class="sh.pancake.link.api.auth.AuthManager">
-        <constructor-arg value="#{systemEnvironment['AUTH_SECRECT']}"/>
-        <constructor-arg value="#{systemEnvironment['AUTH_EXPIRE_TIME']}"/>
+    <bean id="access-token-manager" class="sh.pancake.link.api.auth.AccessTokenManager">
+        <constructor-arg value="#{systemEnvironment['JWT_SECRECT']}"/>
+        <constructor-arg value="#{systemEnvironment['JWT_ACCESS_TOKEN_EXPIRE_TIME']}"/>
+    </bean>
+
+    <bean id="refresh-token-manager" class="sh.pancake.link.api.auth.RefreshTokenManager">
+        <constructor-arg value="#{systemEnvironment['JWT_SECRECT']}"/>
+        <constructor-arg value="#{systemEnvironment['JWT_REFRESH_TOKEN_EXPIRE_TIME']}"/>
     </bean>
 
     <bean id="database-config" class="sh.pancake.link.PancakeLinkDatabaseConfig">
