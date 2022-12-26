@@ -91,6 +91,10 @@ public class RedirectService {
      * @return true on success
      */
     public boolean add(Redirection redirection) {
-        return repository.insert(redirection) > 0;
+        try {
+            return repository.insert(redirection) > 0;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

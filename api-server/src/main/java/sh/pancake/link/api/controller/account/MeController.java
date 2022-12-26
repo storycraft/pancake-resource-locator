@@ -40,7 +40,7 @@ public class MeController {
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
     ) {
         Integer accountId = authenticator.authenticate(authorization);
-        if (accountId == null || accountService.isSuspended(accountId)) {
+        if (accountId == null || !accountService.checkValid(accountId)) {
             return APIResult.error(APIStatusCode.INVALID_CREDENTIAL);
         }
 
@@ -58,7 +58,7 @@ public class MeController {
         @ModelAttribute AccountInfo info
     ) {
         Integer accountId = authenticator.authenticate(authorization);
-        if (accountId == null || accountService.isSuspended(accountId)) {
+        if (accountId == null || !accountService.checkValid(accountId)) {
             return APIResult.error(APIStatusCode.INVALID_CREDENTIAL);
         }
 
@@ -71,7 +71,7 @@ public class MeController {
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
     ) {
         Integer accountId = authenticator.authenticate(authorization);
-        if (accountId == null || accountService.isSuspended(accountId)) {
+        if (accountId == null || !accountService.checkValid(accountId)) {
             return APIResult.error(APIStatusCode.INVALID_CREDENTIAL);
         }
         

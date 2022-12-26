@@ -38,7 +38,7 @@ public class OAuthController {
     @PostMapping("refresh")
     public APIResult<AccountCredential> refresh(@RequestParam("refresh_token") String refreshToken) {
         Integer accountId = refreshTokenManager.verify(refreshToken);
-        if (accountId == null || accountService.isSuspended(accountId)) {
+        if (accountId == null || !accountService.checkValid(accountId)) {
             return APIResult.error(APIStatusCode.FAILED);
         }
 

@@ -44,24 +44,28 @@ public class AccountService {
     public boolean register(String email, String password) {
         long now = Instant.now().toEpochMilli();
 
-        return repository.add(new Account(
-            0,
-            email,
-            BCrypt.hashpw(password, BCrypt.gensalt()),
-            now,
-
-            // TODO:: add account activation
-            now,
-
-            now,
-            false
-        )) > 0;
+        try {
+            return repository.add(new Account(
+                0,
+                email,
+                BCrypt.hashpw(password, BCrypt.gensalt()),
+                now,
+    
+                // TODO:: add account activation
+                now,
+    
+                now,
+                false
+            )) > 0;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public boolean isSuspended(int accountId) {
+    public boolean checkValid(int accountId) {
         Account account = repository.get(accountId);
 
-        if (account == null || !account.isSuspended()) {
+        if (account == null || account.isSuspended() || account.getActivatedAt() == null) {
             return false;
         }
 
