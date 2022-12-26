@@ -9,12 +9,16 @@
 
     <bean id="access-token-manager" class="sh.pancake.link.api.auth.AccessTokenManager">
         <constructor-arg value="#{systemEnvironment['JWT_SECRET']}"/>
-        <constructor-arg value="3600"/>
+        <constructor-arg>
+            <value>3600</value>
+        </constructor-arg>
     </bean>
 
     <bean id="refresh-token-manager" class="sh.pancake.link.api.auth.RefreshTokenManager">
         <constructor-arg value="#{systemEnvironment['JWT_SECRET']}"/>
-        <constructor-arg value="31536000"/>
+        <constructor-arg>
+            <value>31536000</value>
+        </constructor-arg>
     </bean>
 
     <bean id="authenticator" class="sh.pancake.link.api.auth.APIAuthenticator">
