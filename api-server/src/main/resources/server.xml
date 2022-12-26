@@ -9,12 +9,12 @@
 
     <bean id="access-token-manager" class="sh.pancake.link.api.auth.AccessTokenManager">
         <constructor-arg value="#{systemEnvironment['JWT_SECRET']}"/>
-        <constructor-arg value="#{systemEnvironment['JWT_ACCESS_TOKEN_EXPIRE_TIME']}"/>
+        <constructor-arg value="3600"/>
     </bean>
 
     <bean id="refresh-token-manager" class="sh.pancake.link.api.auth.RefreshTokenManager">
         <constructor-arg value="#{systemEnvironment['JWT_SECRET']}"/>
-        <constructor-arg value="#{systemEnvironment['JWT_REFRESH_TOKEN_EXPIRE_TIME']}"/>
+        <constructor-arg value="31536000"/>
     </bean>
 
     <bean id="authenticator" class="sh.pancake.link.api.auth.APIAuthenticator">
