@@ -7,6 +7,11 @@
 
     <context:annotation-config />
 
+    <bean id="auth" class="sh.pancake.link.api.auth.AuthManager">
+        <constructor-arg value="#{systemEnvironment['AUTH_SECRECT']}"/>
+        <constructor-arg value="#{systemEnvironment['AUTH_EXPIRE_TIME']}"/>
+    </bean>
+
     <bean id="database-config" class="sh.pancake.link.PancakeLinkDatabaseConfig">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
         <property name="url" value="#{systemEnvironment['DB_URL']}" />
