@@ -5,12 +5,14 @@
  */
 package sh.pancake.link.api.account;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
  * Contains credential tokens can be used in api request
  */
 @Data
+@AllArgsConstructor
 public class AccountCredential {
     /**
      * Access token
