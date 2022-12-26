@@ -5,6 +5,7 @@
  */
 package sh.pancake.link.repository.account;
 
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,4 +20,12 @@ public interface AccountRepository {
      * @return Affected row count. 1 on success
      */
     int add(Account account);
+
+    /**
+     * Get account with id
+     * @param accountId Account id
+     * @return {@link Account} object if account exists
+     */
+    @Nullable
+    Account get(int accountId);
 }

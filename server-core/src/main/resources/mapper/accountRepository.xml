@@ -5,4 +5,10 @@
         INSERT INTO account (email, account_type, credential, created_at, activated_at, updated_at, suspended)
         VALUES (#{email}, #{accountType}, #{credential}, #{createdAt}, #{activatedAt}, #{updatedAt}, #{suspended});
     </insert>
+
+    <select id="get" parameterType="_int" resultType="sh.pancake.link.repository.account.Account">
+        SELECT id, email, credential, created_at, activated_at, updated_at, suspended
+        FROM account
+        WHERE id = #{id};
+    </select>
 </mapper>
