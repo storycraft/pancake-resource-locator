@@ -53,6 +53,16 @@ public class AccountService {
         )) > 0;
     }
 
+    public boolean isSuspended(int accountId) {
+        Account account = repository.get(accountId);
+
+        if (account == null || !account.isSuspended()) {
+            return false;
+        }
+
+        return true;
+    }
+
     /**
      * Try to login with email and password and issue {@code AccountCredential}
      *

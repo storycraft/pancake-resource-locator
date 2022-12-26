@@ -21,6 +21,7 @@ import sh.pancake.link.api.APIStatusCode;
 import sh.pancake.link.api.auth.APIAuthenticator;
 import sh.pancake.link.api.redirect.RedirectStatusCode;
 import sh.pancake.link.api.redirect.RedirectionInfo;
+import sh.pancake.link.api.service.AccountService;
 import sh.pancake.link.api.service.RedirectService;
 import sh.pancake.link.repository.redirection.RedirectURL;
 import sh.pancake.link.repository.redirection.Redirection;
@@ -42,12 +43,16 @@ public class RedirectController {
     @Autowired
     private APIAuthenticator authenticator;
 
+    @Setter
+    @Autowired
+    private AccountService accountService;
+
     @PostMapping
     public APIResult<RedirectionInfo> newRedirection(
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
     ) {
         Integer accountId = authenticator.authenticate(authorization);
-        if (accountId == null) {
+        if (accountId == null || accountService.isSuspended(accountId)) {
             return APIResult.error(APIStatusCode.INVALID_CREDENTIAL);
         }
 
@@ -61,7 +66,7 @@ public class RedirectController {
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
     ) {
         Integer accountId = authenticator.authenticate(authorization);
-        if (accountId == null) {
+        if (accountId == null || accountService.isSuspended(accountId)) {
             return APIResult.error(APIStatusCode.INVALID_CREDENTIAL);
         }
 
@@ -84,7 +89,7 @@ public class RedirectController {
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
     ) {
         Integer accountId = authenticator.authenticate(authorization);
-        if (accountId == null) {
+        if (accountId == null || accountService.isSuspended(accountId)) {
             return APIResult.error(APIStatusCode.INVALID_CREDENTIAL);
         }
 
@@ -101,7 +106,7 @@ public class RedirectController {
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
     ) {
         Integer accountId = authenticator.authenticate(authorization);
-        if (accountId == null) {
+        if (accountId == null || accountService.isSuspended(accountId)) {
             return APIResult.error(APIStatusCode.INVALID_CREDENTIAL);
         }
 
@@ -120,7 +125,7 @@ public class RedirectController {
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
     ) {
         Integer accountId = authenticator.authenticate(authorization);
-        if (accountId == null) {
+        if (accountId == null || accountService.isSuspended(accountId)) {
             return APIResult.error(APIStatusCode.INVALID_CREDENTIAL);
         }
 

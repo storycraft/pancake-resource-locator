@@ -17,6 +17,7 @@ import sh.pancake.link.api.APIStatusCode;
 import sh.pancake.link.api.account.AccountCredential;
 import sh.pancake.link.api.auth.AccessTokenManager;
 import sh.pancake.link.api.auth.RefreshTokenManager;
+import sh.pancake.link.api.service.AccountService;
 
 @Controller
 @RequestMapping("oauth")
@@ -30,10 +31,14 @@ public class OAuthController {
     @Autowired
     private RefreshTokenManager refreshTokenManager;
 
+    @Setter
+    @Autowired
+    private AccountService accountService;
+
     @PostMapping("refresh")
     public APIResult<AccountCredential> refresh(@RequestParam("refresh_token") String refreshToken) {
         Integer accountId = refreshTokenManager.verify(refreshToken);
-        if (accountId == null) {
+        if (accountId == null || accountService.isSuspended(accountId)) {
             return APIResult.error(APIStatusCode.FAILED);
         }
 
