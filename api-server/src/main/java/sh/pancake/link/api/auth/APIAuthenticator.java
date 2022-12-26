@@ -26,7 +26,7 @@ public class APIAuthenticator {
             return null;
         }
 
-        String accessToken = matcher.group(0);
+        String accessToken = matcher.group(1);
 
         return manager.verify(accessToken);
     }
