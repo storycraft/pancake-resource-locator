@@ -9,6 +9,7 @@ import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import lombok.Setter;
@@ -46,7 +47,7 @@ public class AccountService {
         return repository.add(new Account(
             0,
             email,
-            password,
+            BCrypt.hashpw(password, BCrypt.gensalt()),
             now,
 
             // TODO:: add account activation
@@ -78,7 +79,11 @@ public class AccountService {
     public AccountCredential login(String email, String password) {
         Account account = repository.getWithEmail(email);
 
-        if (account == null || account.isSuspended()) {
+        if (account == null || account.getCredential() == null || account.isSuspended()) {
+            return null;
+        }
+
+        if (!BCrypt.checkpw(password, account.getCredential())) {
             return null;
         }
 
