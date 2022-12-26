@@ -66,7 +66,7 @@ public class MeController {
         return APIResult.error(APIStatusCode.FAILED);
     }
 
-    @GetMapping("me/redirections")
+    @GetMapping("redirections")
     public APIResult<Redirection[]> getMyRedirections(
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
     ) {
