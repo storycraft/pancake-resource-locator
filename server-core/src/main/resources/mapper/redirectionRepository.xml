@@ -3,7 +3,7 @@
 <mapper namespace="sh.pancake.link.repository.redirection.RedirectionRepository">
     <select id="getURLWithName" parameterType="String"
         resultType="sh.pancake.link.repository.redirection.RedirectURL">
-        SELECT id, url
+        SELECT id, account_id, url
         FROM redirection
         WHERE name = #{name};
     </select>

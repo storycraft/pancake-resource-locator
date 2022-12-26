@@ -13,5 +13,7 @@ import lombok.Data;
 public class RedirectURL {
     private long id;
 
+    private int accountId;
+
     private String url;
 }
