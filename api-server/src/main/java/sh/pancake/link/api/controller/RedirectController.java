@@ -5,14 +5,18 @@
  */
 package sh.pancake.link.api.controller;
 
+import java.time.Instant;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
@@ -48,16 +52,39 @@ public class RedirectController {
     private AccountService accountService;
 
     @PostMapping
-    public APIResult<RedirectionInfo> newRedirection(
-        @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
+    public APIResult<Long> newRedirection(
+        @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization,
+        @RequestParam("name") String name,
+        @RequestParam("url") String url,
+        @Nullable @RequestParam("expire_at") Long expireAt,
+        @Nullable @RequestParam("visit_limit") Long visitLimit,
+        @RequestParam("redirection_page") boolean redirectionPage
     ) {
         Integer accountId = authenticator.authenticate(authorization);
         if (accountId == null || accountService.isSuspended(accountId)) {
             return APIResult.error(APIStatusCode.INVALID_CREDENTIAL);
         }
 
-        // TODO:: implement stub
-        return APIResult.error(APIStatusCode.FAILED);
+        long now = Instant.now().toEpochMilli();
+
+        Redirection redirection = new Redirection(
+            0,
+            accountId,
+            name,
+            url,
+            now,
+            now,
+            expireAt,
+            visitLimit,
+            redirectionPage,
+            false
+        );
+
+        if (!service.add(redirection)) {
+            return APIResult.error(APIStatusCode.FAILED);
+        }
+
+        return APIResult.success(redirection.getId());
     }
 
     @GetMapping("{id}")

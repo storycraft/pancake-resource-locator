@@ -83,4 +83,14 @@ public class RedirectService {
 
         return redirection;
     }
+
+    /**
+     * Add redirection
+     *
+     * @param redirection Redirection
+     * @return true on success
+     */
+    public boolean add(Redirection redirection) {
+        return repository.insert(redirection) > 0;
+    }
 }
