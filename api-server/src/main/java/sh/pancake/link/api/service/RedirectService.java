@@ -22,33 +22,65 @@ public class RedirectService {
     
     /**
      * Get redirect url of provided name
+     * 
+     * @param accountId Account id
      * @param name name of redirection
      * @return {@code RedirectURL} object if exists
      */
     @Nullable
-    public RedirectURL getRedirectURL(String name) {
-        return repository.getURLWithName(name);
+    public RedirectURL getRedirectURL(int accountId, String name) {
+        RedirectURL url = repository.getURLWithName(name);
+
+        if (url == null || url.getAccountId() != accountId) {
+            return null;
+        }
+
+        return url;
     }
 
     /**
-     * Get {@code Redirection} of name
+     * Get {@code Redirection} with name
      *
+     * @param accountId Account id
      * @param name name of redirection
      * @return {@code Redirection} if exists
      */
     @Nullable
-    public Redirection getRedirection(String name) {
-        return repository.getWithName(name);
+    public Redirection getWithName(int accountId, String name) {
+        Redirection redirection = repository.getWithName(name);
+
+        if (redirection == null || redirection.getAccountId() != accountId) {
+            return null;
+        }
+
+        return redirection;
+    }
+
+    public boolean delete(int accountId, long id) {
+        Redirection redirection = repository.get(id);
+
+        if (redirection == null || redirection.getAccountId() != accountId) {
+            return false;
+        }
+
+        return repository.delete(id) > 0;
     }
 
     /**
-     * Get {@code Redirection} of id
+     * Get {@code Redirection} with id
      *
+     * @param accountId Account id
      * @param id id of redirection
      * @return {@code Redirection} if exists
      */
     @Nullable
-    public Redirection getRedirection(long id) {
-        return repository.get(id);
+    public Redirection get(int accountId, long id) {
+        Redirection redirection = repository.get(id);
+
+        if (redirection == null || redirection.getAccountId() != accountId) {
+            return null;
+        }
+
+        return redirection;
     }
 }

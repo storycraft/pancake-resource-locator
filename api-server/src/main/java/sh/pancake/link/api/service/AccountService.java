@@ -38,7 +38,7 @@ public class AccountService {
     }
 
     /**
-     * Login with email and password
+     * Try to login with email and password and issue {@code AccountCredential}
      *
      * @param email
      * @param password
