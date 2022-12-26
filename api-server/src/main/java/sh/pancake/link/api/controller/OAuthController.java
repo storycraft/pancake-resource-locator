@@ -6,10 +6,10 @@
 package sh.pancake.link.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
 import sh.pancake.link.api.APIResult;
@@ -19,7 +19,7 @@ import sh.pancake.link.api.auth.RefreshTokenManager;
 import sh.pancake.link.api.service.AccountService;
 import sh.pancake.link.api.service.OAuthService;
 
-@Controller
+@RestController
 @RequestMapping("oauth")
 public class OAuthController {
 
