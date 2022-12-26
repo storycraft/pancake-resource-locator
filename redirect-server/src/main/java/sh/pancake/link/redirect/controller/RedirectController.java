@@ -8,7 +8,7 @@ package sh.pancake.link.redirect.controller;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +41,7 @@ public class RedirectController {
 
         if (redirection == null) {
             log.trace(String.format("Redirection %s is not found", name));
-            throw new ResponseStatusException(HttpStatusCode.valueOf(404), "Redirect URL Not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Redirect URL Not found");
         }
 
         log.trace(String.format("Redirect %s -> %s", name, redirection.getUrl()));
