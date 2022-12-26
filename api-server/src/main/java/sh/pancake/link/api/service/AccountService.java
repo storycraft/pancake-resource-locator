@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.Setter;
 import sh.pancake.link.api.account.AccountCredential;
+import sh.pancake.link.repository.account.Account;
 import sh.pancake.link.repository.account.AccountRepository;
 import sh.pancake.link.repository.redirection.Redirection;
 import sh.pancake.link.repository.redirection.RedirectionRepository;
@@ -57,5 +58,9 @@ public class AccountService {
      */
     public Redirection[] getRedirections(int accountId) {
         return redirectionRepository.getListOf(accountId);
+    }
+
+    public Account get(int accountId) {
+        return repository.get(accountId);
     }
 }
