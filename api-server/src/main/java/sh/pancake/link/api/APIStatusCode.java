@@ -13,9 +13,4 @@ public final class APIStatusCode {
      * Operation failed
      */
     public final static int FAILED = -1;
-
-    /**
-     * Invalid credential
-     */
-    public final static int INVALID_CREDENTIAL = -2;
 }
