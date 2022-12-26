@@ -33,7 +33,7 @@
         DELETE FROM redirection WHERE id = #{id};
     </delete>
 
-    <insert id="insert" parameterType="sh.pancake.link.repository.redirection.Redirection">
+    <insert id="insert" parameterType="sh.pancake.link.repository.redirection.Redirection" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO redirection (account_id, name, url, created_at, updated_at, expire_at, visit_limit, redirection_page, user_disabled)
         VALUES (#{accountId}, #{name}, #{url}, #{createdAt}, #{updatedAt}, #{expireAt}, #{visitLimit}, #{redirectionPage}, #{userDisabled});
     </insert>

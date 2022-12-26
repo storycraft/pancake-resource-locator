@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sh.pancake.link.repository.visitlog.VisitlogRepository">
-    <insert id="add" parameterType="sh.pancake.link.repository.visitlog.Visitlog">
+    <insert id="add" parameterType="sh.pancake.link.repository.visitlog.Visitlog" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO visitlog (redirection_id, visitor_address, visited_at)
         VALUES (#{redirectionId}, #{visitorAddress}, #{visitedAt});
     </insert>
