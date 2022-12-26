@@ -6,11 +6,9 @@
 package sh.pancake.link.api.controller.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +17,8 @@ import sh.pancake.link.api.APIResult;
 import sh.pancake.link.api.APIStatusCode;
 import sh.pancake.link.api.account.AccountInfo;
 import sh.pancake.link.api.auth.APIAuthenticator;
+import sh.pancake.link.api.auth.AuthAccount;
+import sh.pancake.link.api.auth.WithAuth;
 import sh.pancake.link.api.service.AccountService;
 import sh.pancake.link.repository.account.Account;
 import sh.pancake.link.repository.redirection.Redirection;
@@ -36,45 +36,28 @@ public class MeController {
     private AccountService accountService;
 
     @GetMapping
+    @WithAuth
     public APIResult<AccountInfo> getInfo(
-        @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
+        @AuthAccount Account account
     ) {
-        Integer accountId = authenticator.authenticate(authorization);
-        if (accountId == null || !accountService.checkValid(accountId)) {
-            return APIResult.error(APIStatusCode.INVALID_CREDENTIAL);
-        }
-
-        Account account = accountService.get(accountId);
-        if (account == null) {
-            return APIResult.error(APIStatusCode.FAILED);
-        }
-        
         return APIResult.success(AccountInfo.from(account));
     }
 
     @PutMapping
+    @WithAuth
     public APIResult<Void> updateInfo(
-        @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization,
+        @AuthAccount Account account,
         @ModelAttribute AccountInfo info
     ) {
-        Integer accountId = authenticator.authenticate(authorization);
-        if (accountId == null || !accountService.checkValid(accountId)) {
-            return APIResult.error(APIStatusCode.INVALID_CREDENTIAL);
-        }
-
         // TODO:: implement stub
         return APIResult.error(APIStatusCode.FAILED);
     }
 
     @GetMapping("redirections")
+    @WithAuth
     public APIResult<Redirection[]> getMyRedirections(
-        @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization
+        @AuthAccount Account account
     ) {
-        Integer accountId = authenticator.authenticate(authorization);
-        if (accountId == null || !accountService.checkValid(accountId)) {
-            return APIResult.error(APIStatusCode.INVALID_CREDENTIAL);
-        }
-        
-        return APIResult.success(accountService.getRedirections(accountId));
+        return APIResult.success(accountService.getRedirections(account.getId()));
     }
 }

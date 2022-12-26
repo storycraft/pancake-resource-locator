@@ -62,14 +62,14 @@ public class AccountService {
         }
     }
 
-    public boolean checkValid(int accountId) {
+    public Account getValid(int accountId) {
         Account account = repository.get(accountId);
 
         if (account == null || account.isSuspended() || account.getActivatedAt() == null) {
-            return false;
+            return null;
         }
 
-        return true;
+        return account;
     }
 
     /**
