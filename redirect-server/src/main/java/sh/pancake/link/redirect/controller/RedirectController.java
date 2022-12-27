@@ -35,8 +35,11 @@ public class RedirectController {
     private VisitlogService visitlogService;
 
     @GetMapping(value = "/{name}")
-    public void onRedirectPath(@PathVariable("name") String name, HttpServletRequest request, HttpServletResponse httpServletResponse)
-            throws IOException {
+    public void onRedirectPath(
+        @PathVariable("name") String name,
+        HttpServletRequest request,
+        HttpServletResponse httpServletResponse
+    ) throws IOException {
         Redirection redirection = redirectService.getValid(name);
 
         if (redirection == null) {
