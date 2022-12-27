@@ -8,13 +8,12 @@ package sh.pancake.link.api.controller;
 import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
@@ -23,6 +22,7 @@ import sh.pancake.link.api.APIStatusCode;
 import sh.pancake.link.api.auth.APIAuthenticator;
 import sh.pancake.link.api.auth.AuthAccount;
 import sh.pancake.link.api.auth.WithAuth;
+import sh.pancake.link.api.redirect.NewRedirectionForm;
 import sh.pancake.link.api.redirect.RedirectStatusCode;
 import sh.pancake.link.api.redirect.RedirectionInfo;
 import sh.pancake.link.api.service.AccountService;
@@ -56,24 +56,20 @@ public class RedirectController {
     @WithAuth
     public APIResult<Long> newRedirection(
         @AuthAccount Account account,
-        @RequestParam("name") String name,
-        @RequestParam("url") String url,
-        @Nullable @RequestParam("expire_at") Long expireAt,
-        @Nullable @RequestParam("visit_limit") Long visitLimit,
-        @RequestParam("redirection_page") boolean redirectionPage
+        @ModelAttribute NewRedirectionForm form
     ) {
         long now = Instant.now().toEpochMilli();
 
         Redirection redirection = new Redirection(
             0,
             account.getId(),
-            name,
-            url,
+            form.getName(),
+            form.getUrl(),
             now,
             now,
-            expireAt,
-            visitLimit,
-            redirectionPage,
+            form.getExpireAt(),
+            form.getVisitLimit(),
+            form.isRedirectionPage(),
             false
         );
 
