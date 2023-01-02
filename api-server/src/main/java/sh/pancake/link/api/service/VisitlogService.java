@@ -23,7 +23,7 @@ public class VisitlogService {
      * @param redirectionId redirection id
      * @return visit count of redirection
      */
-    public long getVisitCount(long redirectionId) {
+    public Long getVisitCount(long redirectionId) {
         return repository.getVisitCount(redirectionId);
     }
 }
