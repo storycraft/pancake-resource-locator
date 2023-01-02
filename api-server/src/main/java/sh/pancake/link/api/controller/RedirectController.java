@@ -29,6 +29,7 @@ import sh.pancake.link.api.redirect.RedirectionInfo;
 import sh.pancake.link.api.redirect.RedirectionUpdateForm;
 import sh.pancake.link.api.service.AccountService;
 import sh.pancake.link.api.service.RedirectService;
+import sh.pancake.link.api.service.VisitlogService;
 import sh.pancake.link.repository.account.Account;
 import sh.pancake.link.repository.redirection.RedirectURL;
 import sh.pancake.link.repository.redirection.Redirection;
@@ -54,6 +55,10 @@ public class RedirectController {
     @Setter
     @Autowired
     private AccountService accountService;
+
+    @Setter
+    @Autowired
+    private VisitlogService visitlogService;
 
     @PostMapping
     @WithAuth
@@ -95,11 +100,27 @@ public class RedirectController {
             return APIResult.error(RedirectStatusCode.NOT_FOUND);
         }
 
-        if (account.getId() != redirection.getAccountId()) {
+        return APIResult.success(RedirectionInfo.from(redirection));
+    }
+
+    @PutMapping("{id}/visits")
+    @WithAuth
+    public APIResult<Long> getVisitCount(
+        @PathVariable("id") long id,
+        @AuthAccount Account account
+    ) {
+        Redirection redirection = service.get(account.getId(), id);
+
+        if (redirection == null) {
             return APIResult.error(RedirectStatusCode.NOT_FOUND);
         }
 
-        return APIResult.success(RedirectionInfo.from(redirection));
+        Long visitCount = visitlogService.getVisitCount(id);
+        if (visitCount == null) {
+            return APIResult.error(RedirectStatusCode.NOT_FOUND);
+        }
+
+        return APIResult.success(visitCount);
     }
 
     @PutMapping("{id}/settings")
@@ -109,6 +130,12 @@ public class RedirectController {
         @AuthAccount Account account,
         @ModelAttribute RedirectionUpdateForm form
     ) {
+        Redirection redirection = service.get(account.getId(), id);
+
+        if (redirection == null) {
+            return APIResult.error(RedirectStatusCode.NOT_FOUND);
+        }
+
         if (!service.updateSettings(
             id,
             new RedirectionSettings(
