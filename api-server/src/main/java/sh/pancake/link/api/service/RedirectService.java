@@ -102,11 +102,18 @@ public class RedirectService {
     /**
      * Update redirection settings
      * 
+     * @param accountId account id
      * @param id redirection id
      * @param settings redirection settings
      * @return true on success
      */
-    public boolean updateSettings(long id, RedirectionSettings settings) {
+    public boolean updateSettings(int accountId, long id, RedirectionSettings settings) {
+        Redirection redirection = repository.get(id);
+
+        if (redirection == null || redirection.getAccountId() != accountId) {
+            return false;
+        }
+        
         return repository.update(id, settings) > 0;
     }
 }

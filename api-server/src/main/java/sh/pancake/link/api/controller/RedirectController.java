@@ -130,13 +130,8 @@ public class RedirectController {
         @AuthAccount Account account,
         @ModelAttribute RedirectionUpdateForm form
     ) {
-        Redirection redirection = service.get(account.getId(), id);
-
-        if (redirection == null) {
-            return APIResult.error(RedirectStatusCode.NOT_FOUND);
-        }
-
         if (!service.updateSettings(
+            account.getId(),
             id,
             new RedirectionSettings(
                 Instant.now().toEpochMilli(),
