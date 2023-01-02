@@ -6,7 +6,7 @@
         VALUES (#{redirectionId}, #{visitorAddress}, #{visitedAt});
     </insert>
 
-    <select id="getVisitCount" parameterType="_long" resultType="_long">
+    <select id="getVisitCount" parameterType="_long" resultType="Long">
         SELECT COUNT(*) FROM visitlog
         WHERE redirection_id = #{redirection_id};
     </select>
