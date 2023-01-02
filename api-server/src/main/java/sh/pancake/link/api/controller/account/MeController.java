@@ -7,14 +7,11 @@ package sh.pancake.link.api.controller.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Setter;
 import sh.pancake.link.api.APIResult;
-import sh.pancake.link.api.APIStatusCode;
 import sh.pancake.link.api.account.AccountInfo;
 import sh.pancake.link.api.auth.APIAuthenticator;
 import sh.pancake.link.api.auth.AuthAccount;
@@ -41,16 +38,6 @@ public class MeController {
         @AuthAccount Account account
     ) {
         return APIResult.success(AccountInfo.from(account));
-    }
-
-    @PutMapping
-    @WithAuth
-    public APIResult<Void> updateInfo(
-        @AuthAccount Account account,
-        @ModelAttribute AccountInfo info
-    ) {
-        // TODO:: implement stub
-        return APIResult.error(APIStatusCode.FAILED);
     }
 
     @GetMapping("redirections")
