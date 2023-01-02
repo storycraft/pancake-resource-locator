@@ -5,6 +5,7 @@
  */
 package sh.pancake.link.repository.redirection;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
@@ -63,4 +64,13 @@ public interface RedirectionRepository {
      * @return Affected row count
      */
     int insert(Redirection redirection);
+
+    /**
+     * Update redirection settings
+     * 
+     * @param id redirection id
+     * @param settings redirection settings
+     * @return Affected row count
+     */
+    int update(@Param("id") long id, @Param("settings") RedirectionSettings settings);
 }

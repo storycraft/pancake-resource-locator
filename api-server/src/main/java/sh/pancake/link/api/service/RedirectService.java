@@ -13,6 +13,7 @@ import lombok.Setter;
 import sh.pancake.link.repository.redirection.RedirectURL;
 import sh.pancake.link.repository.redirection.Redirection;
 import sh.pancake.link.repository.redirection.RedirectionRepository;
+import sh.pancake.link.repository.redirection.RedirectionSettings;
 
 @Service
 public class RedirectService {
@@ -96,5 +97,16 @@ public class RedirectService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    /**
+     * Update redirection settings
+     * 
+     * @param id redirection id
+     * @param settings redirection settings
+     * @return true on success
+     */
+    public boolean updateSettings(long id, RedirectionSettings settings) {
+        return repository.update(id, settings) > 0;
     }
 }
