@@ -32,6 +32,7 @@ import sh.pancake.link.api.service.RedirectService;
 import sh.pancake.link.repository.account.Account;
 import sh.pancake.link.repository.redirection.RedirectURL;
 import sh.pancake.link.repository.redirection.Redirection;
+import sh.pancake.link.repository.redirection.RedirectionSettings;
 
 /**
  * Redirect API controller
@@ -108,7 +109,20 @@ public class RedirectController {
         @AuthAccount Account account,
         @ModelAttribute RedirectionUpdateForm form
     ) {
-        return APIResult.error(APIStatusCode.FAILED);
+        if (!service.updateSettings(
+            id,
+            new RedirectionSettings(
+                Instant.now().toEpochMilli(),
+                form.getExpireAt(),
+                form.getVisitLimit(),
+                form.isRedirectionPage(),
+                form.isUserDisabled()
+            )
+        )) {
+            return APIResult.error(RedirectStatusCode.NOT_FOUND);
+        }
+
+        return APIResult.success();
     }
 
     @DeleteMapping("{id}")
