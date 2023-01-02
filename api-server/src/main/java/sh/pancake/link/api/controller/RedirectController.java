@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +26,7 @@ import sh.pancake.link.api.auth.WithAuth;
 import sh.pancake.link.api.redirect.NewRedirectionForm;
 import sh.pancake.link.api.redirect.RedirectStatusCode;
 import sh.pancake.link.api.redirect.RedirectionInfo;
+import sh.pancake.link.api.redirect.RedirectionUpdateForm;
 import sh.pancake.link.api.service.AccountService;
 import sh.pancake.link.api.service.RedirectService;
 import sh.pancake.link.repository.account.Account;
@@ -97,6 +99,16 @@ public class RedirectController {
         }
 
         return APIResult.success(RedirectionInfo.from(redirection));
+    }
+
+    @PutMapping("{id}/settings")
+    @WithAuth
+    public APIResult<Void> updateRedirection(
+        @PathVariable("id") long id,
+        @AuthAccount Account account,
+        @ModelAttribute RedirectionUpdateForm form
+    ) {
+        return APIResult.error(APIStatusCode.FAILED);
     }
 
     @DeleteMapping("{id}")

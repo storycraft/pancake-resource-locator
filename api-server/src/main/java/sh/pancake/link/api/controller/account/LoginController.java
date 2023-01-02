@@ -38,7 +38,7 @@ public class LoginController {
     @PostMapping("register")
     public APIResult<Void> register(@ModelAttribute AccountRegisterForm form) {
         log.trace(String.format("Registering account %s", form.getEmail()));
-        
+
         if (!service.register(form.getEmail(), form.getPassword())) {
             return APIResult.error(AccountStatusCode.ALREADY_EXISTS);
         }
