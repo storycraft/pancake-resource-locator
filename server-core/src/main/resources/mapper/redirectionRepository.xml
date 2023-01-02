@@ -37,4 +37,14 @@
         INSERT INTO redirection (account_id, name, url, created_at, updated_at, expire_at, visit_limit, redirection_page, user_disabled)
         VALUES (#{accountId}, #{name}, #{url}, #{createdAt}, #{updatedAt}, #{expireAt}, #{visitLimit}, #{redirectionPage}, #{userDisabled});
     </insert>
+
+    <update id="updateSettings">
+        UPDATE redirection SET
+        update_at = #{settings.updateAt},
+        expire_at = #{settings.expireAt},
+        visit_limit = #{settings.visitLimit},
+        redirection_page = #{settings.redirectionPage},
+        user_disabled = #{settings.userDisabled}
+        WHERE id = #{id};
+    </update>
 </mapper>

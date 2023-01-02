@@ -27,5 +27,5 @@ public interface VisitlogRepository {
      * @param redirectionId redirection id
      * @return Visit count of redirection
      */
-    long getVisitCount(long redirectionId);
+    Long getVisitCount(long redirectionId);
 }
