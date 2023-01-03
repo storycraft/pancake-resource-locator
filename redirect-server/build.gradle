@@ -13,9 +13,6 @@ plugins {
 // Apply common properties across project
 apply from: "../project.gradle"
 
-// Set Java toolchain version to 17
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-
 // Set encoding to utf-8
 tasks.withType(JavaCompile).configureEach {
 	it.options.encoding = "UTF-8"
