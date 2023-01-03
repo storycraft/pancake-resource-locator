@@ -59,6 +59,15 @@ public class RedirectController {
     @Setter
     @Autowired
     private VisitlogService visitlogService;
+    
+
+    @GetMapping
+    @WithAuth
+    public APIResult<RedirectionInfo[]> getRedirections(
+        @AuthAccount Account account
+    ) {
+        return APIResult.success(service.getRedirections(account.getId()));
+    }
 
     @PostMapping
     @WithAuth

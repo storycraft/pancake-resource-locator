@@ -16,8 +16,6 @@ import lombok.Setter;
 import sh.pancake.link.api.account.AccountCredential;
 import sh.pancake.link.repository.account.Account;
 import sh.pancake.link.repository.account.AccountRepository;
-import sh.pancake.link.repository.redirection.Redirection;
-import sh.pancake.link.repository.redirection.RedirectionRepository;
 
 @Service
 public class AccountService {
@@ -25,10 +23,6 @@ public class AccountService {
     @Setter
     @Autowired
     private AccountRepository repository;
-
-    @Setter
-    @Autowired
-    private RedirectionRepository redirectionRepository;
 
     @Setter
     @Autowired
@@ -92,16 +86,6 @@ public class AccountService {
         }
 
         return oAuthService.issue(account.getId());
-    }
-
-    /**
-     * Get {@code Redirection} list of account
-     *
-     * @param id id of redirection
-     * @return {@code Redirection} if exists
-     */
-    public Redirection[] getRedirections(int accountId) {
-        return redirectionRepository.getListOf(accountId);
     }
 
     public Account get(int accountId) {

@@ -5,11 +5,14 @@
  */
 package sh.pancake.link.api.service;
 
+import java.util.stream.Stream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import lombok.Setter;
+import sh.pancake.link.api.redirect.RedirectionInfo;
 import sh.pancake.link.repository.redirection.RedirectURL;
 import sh.pancake.link.repository.redirection.Redirection;
 import sh.pancake.link.repository.redirection.RedirectionRepository;
@@ -115,5 +118,17 @@ public class RedirectService {
         }
         
         return repository.update(id, settings) > 0;
+    }
+
+    /**
+     * Get {@code Redirection} list of account
+     *
+     * @param id id of redirection
+     * @return array of {@code RedirectionInfo}
+     */
+    public RedirectionInfo[] getRedirections(int accountId) {
+        return Stream.of(repository.getListOf(accountId))
+            .map((redirection) -> RedirectionInfo.from(redirection))
+            .toArray(RedirectionInfo[]::new);
     }
 }

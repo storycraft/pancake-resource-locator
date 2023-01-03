@@ -18,7 +18,6 @@ import sh.pancake.link.api.auth.AuthAccount;
 import sh.pancake.link.api.auth.WithAuth;
 import sh.pancake.link.api.service.AccountService;
 import sh.pancake.link.repository.account.Account;
-import sh.pancake.link.repository.redirection.Redirection;
 
 @RestController
 @RequestMapping("account/me")
@@ -38,13 +37,5 @@ public class MeController {
         @AuthAccount Account account
     ) {
         return APIResult.success(AccountInfo.from(account));
-    }
-
-    @GetMapping("redirections")
-    @WithAuth
-    public APIResult<Redirection[]> getMyRedirections(
-        @AuthAccount Account account
-    ) {
-        return APIResult.success(accountService.getRedirections(account.getId()));
     }
 }
