@@ -10,4 +10,6 @@
     <mvc:annotation-driven />
 
     <context:component-scan base-package="sh.pancake.link.redirect.controller" />
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" />
 </beans>
