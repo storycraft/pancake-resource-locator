@@ -279,6 +279,53 @@ paths:
                         $ref: '#/components/schemas/redirectionInfo'
                   required:
                     - status
+    post:
+      tags:
+        - redirect
+      summary: Create new redirection
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Redirection name
+                url:
+                  type: string
+                  description: Redirection URL
+                expire_at:
+                  type: integer
+                  description: Redirection expire time
+                visit_limit:
+                  type: integer
+                  description: Redirection visit limit
+                redirection_page:
+                  type: boolean
+                  description: Flag to show redirection page or not
+              required:
+                - name
+                - url
+                - redirection_page
+      responses:
+        '200':
+          description: Successful API call
+          content:
+            application/json:
+              schema:
+                  type: object
+                  properties:
+                    status:
+                      $ref: '#/components/schemas/apiStatusCode'
+                    data:
+                      type: integer
+                      description: Created redirection id
+                  required:
+                    - status
   /redirect/{id}:
     get:
       tags:
