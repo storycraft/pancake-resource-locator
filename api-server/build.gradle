@@ -46,15 +46,16 @@ dependencies {
     
     testCompileOnly 'org.projectlombok:lombok:1.18.24'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
-
-    swaggerUI 'org.webjars:swagger-ui:3.52.5'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
 
-task docs(type: org.hidetake.gradle.swagger.generator.GenerateSwaggerUI) {
+task docs(type: org.hidetake.gradle.swagger.generator.GenerateReDoc) {
     inputFile = file("$rootDir/resources/api-docs.json")
-    outputDir = file("$buildDir/docs")
+    outputDir = file("$rootDir/docs")
+    // Fix #214
+    scriptSrc = 'https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js'
+    title = 'Pancake Resource Locator API docs'
 }
