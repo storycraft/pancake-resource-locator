@@ -114,18 +114,18 @@
   "tags": [
     {
       "name": "account",
-      "description": "Account management & auth API\n\n## Status codes\n* 1 = Account already exists\n* 2 = Login failed"
+      "description": "Account management & auth API\n\n## Status code\n* 1 = Account already exists\n* 2 = Login failed"
     },
     {
       "name": "account > me"
     },
     {
       "name": "redirect",
-      "description": "Redirection API\n\n## Status codes\n* 1 = Redirection not found"
+      "description": "Redirection API\n\n## Status code\n* 1 = Redirection not found"
     },
     {
       "name": "oauth",
-      "description": "OAuth API\n\n## Status codes"
+      "description": "OAuth API\n\n## Status code"
     }
   ],
   "paths": {
