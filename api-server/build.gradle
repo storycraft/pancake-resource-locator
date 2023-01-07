@@ -8,6 +8,8 @@ plugins {
 
     // Include war plugin to build as war
     id 'war'
+
+    id 'org.hidetake.swagger.generator' version '2.19.2'
 }
 
 // Apply common properties across project
@@ -44,8 +46,15 @@ dependencies {
     
     testCompileOnly 'org.projectlombok:lombok:1.18.24'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    swaggerUI 'org.webjars:swagger-ui:3.52.5'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+task docs(type: org.hidetake.gradle.swagger.generator.GenerateSwaggerUI) {
+    inputFile = file("$rootDir/resources/api-docs.json")
+    outputDir = file("$buildDir/docs")
 }
