@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class RedirectionSettings {
-    private long updatedAt;
+    private long updateAt;
 
     @Nullable
     private Long expireAt;
