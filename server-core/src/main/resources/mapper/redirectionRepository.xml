@@ -40,7 +40,7 @@
 
     <update id="update">
         UPDATE redirection SET
-        update_at = #{settings.updateAt},
+        update_at = #{settings.updatedAt},
         expire_at = #{settings.expireAt},
         visit_limit = #{settings.visitLimit},
         redirection_page = #{settings.redirectionPage},
