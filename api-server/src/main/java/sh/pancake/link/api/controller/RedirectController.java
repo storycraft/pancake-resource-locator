@@ -112,7 +112,7 @@ public class RedirectController {
         return APIResult.success(RedirectionInfo.from(redirection));
     }
 
-    @PutMapping("{id}/visits")
+    @GetMapping("{id}/visits")
     @WithAuth
     public APIResult<Long> getVisitCount(
         @PathVariable("id") long id,
