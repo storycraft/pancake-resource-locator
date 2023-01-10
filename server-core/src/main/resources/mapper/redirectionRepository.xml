@@ -38,7 +38,7 @@
         VALUES (#{accountId}, #{name}, #{url}, #{createdAt}, #{updatedAt}, #{expireAt}, #{visitLimit}, #{redirectionPage}, #{userDisabled});
     </insert>
 
-    <update id="updateSettings">
+    <update id="update">
         UPDATE redirection SET
         update_at = #{settings.updateAt},
         expire_at = #{settings.expireAt},
